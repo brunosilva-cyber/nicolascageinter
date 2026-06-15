@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contador Nicolas Cage</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    background:url('https://upload.wikimedia.org/wikipedia/commons/3/33/Nicolas_Cage_Deauville_2013.jpg')
+    center center/cover no-repeat;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    padding:40px 60px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+}
+
+#timer{
+    color:white;
+    font-size:5rem;
+    font-weight:bold;
+    text-shadow:
+        0 0 10px #00aaff,
+        0 0 20px #00aaff,
+        0 0 40px #00aaff;
+    animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:
+            0 0 10px #00aaff,
+            0 0 20px #00aaff;
+    }
+    to{
+        text-shadow:
+            0 0 20px #00aaff,
+            0 0 40px #00aaff,
+            0 0 60px #00aaff;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+    <div id="timer">00:00:00</div>
+</div>
+
+<script>
+let segundos = 0;
+
+function atualizarContador(){
+    segundos++;
+
+    const horas = Math.floor(segundos / 3600);
+    const minutos = Math.floor((segundos % 3600) / 60);
+    const seg = segundos % 60;
+
+    document.getElementById("timer").textContent =
+        String(horas).padStart(2,'0') + ":" +
+        String(minutos).padStart(2,'0') + ":" +
+        String(seg).padStart(2,'0');
+}
+
+setInterval(atualizarContador, 1000);
+</script>
+
+</body>
+</html>
